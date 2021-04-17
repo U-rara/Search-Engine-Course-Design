@@ -64,8 +64,14 @@ class kr36Spider(CrawlSpider):
             '//*[@class="common-width content articleDetailContent kr-rich-text-wrapper"]/p/text()').extract()
 
         # ''.join()把列表中的元素连接成一个字符串，strip()去掉换行，replace(" ", "")去掉空格，splite()去掉换行符防止Typeerror
+        try:
+            content = ''.join(content).strip().replace(" ", "").split()[0]
+        except IndexError:
+            print('无有效内容，跳过')
         content = ''.join(content).strip().replace(" ", "").split()[0]
         content = re.sub(r'(https|http)?:\/\/(\w|\.|\/|\?|\=|\&|\%)*\b', '', content, flags=re.MULTILINE)  # 去掉正文中引用的图片
+        content = re.sub(r'编者按.*发布。|编者按：', '', content)
+        content = re.sub(r'\W+', '', content).replace("_", '')
         item = response.meta['item']
         item['content'] = content
         sleep(1)

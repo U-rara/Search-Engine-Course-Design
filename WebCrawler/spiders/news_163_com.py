@@ -41,6 +41,7 @@ class News163ComSpider(CrawlSpider):
             title = div.xpath('./div/div[1]/h3/a/text()')[0]
             new_detail_url = div.xpath('./div/div[1]/h3/a/@href')[0]
             item = WebcrawlerItem()  # 实例化一个item对象
+            item['language'] = 'ZH'
             item['title'] = title  # 把抓取到的title放入到item对象中
             item['url'] = new_detail_url
 
@@ -50,7 +51,7 @@ class News163ComSpider(CrawlSpider):
 
     def parse_detail(self, response):  # 解析新闻内容
         content = response.xpath('//*[@class="post_body"]/p/text()').extract()
-        # ''.join()把列表中的元素连接成一个字符串，strip()去掉换行，replace(" ", "")去掉看空格
+        # ''.join()把列表中的元素连接成一个字符串，strip()去掉换行，replace(" ", "")去掉空格
         content = ''.join(content).strip().replace(" ", "")
         item = response.meta['item']
         item['content'] = content
