@@ -19,8 +19,8 @@ class WebcrawlerPipeline:
         self.connection = pymysql.connect(
             host='127.0.0.1',
             user='root',
-            password='urara',
-            db='urara',
+            password='13211x',
+            db='news',
             charset='utf8'
         )
         self.cur = self.connection.cursor()
@@ -42,13 +42,17 @@ class WebcrawlerPipeline:
         print('正在提取网页{}'.format(self.index))
 
         if not check_item(item):
-            pass
+            return
+
+        print('正在预处理网页{}'.format(self.index))
 
         process_content(item)
 
         write_item(self, item)
 
         save_item(self, item)
+
+        print('网页{}处理完成,已保存文本并写入数据库\n\n'.format(self.index))
 
         self.index = self.index + 1
         return item
@@ -63,8 +67,6 @@ def process_content(item):
     item['processed_content'] = []
     if item['language'] == 'ZH':
         text = item['content']
-        text = re.sub(r'编者按.*发布。', '', text)
-        text = re.sub('\W+', '', text).replace("_", '')
 
         crf_segment = HanLP.newSegment("crf")
         text = crf_segment.segment(text)
@@ -95,7 +97,8 @@ def check_item(item):
     title = item['title']
     url = item['url']
     content = item['content']
-    if title is None or url is None or content is None or len(content) < 25:
+    print('文本长度:{}'.format(len(content)))
+    if title is None or url is None or content is None or len(content) < 100:
         return False
     else:
         return True
@@ -130,7 +133,7 @@ def save_item(self, item):
     self.cur.execute(sql)
     results = self.cur.fetchall()
     if results[0][0] != 0:
-        print("重复爬取跳过")
+        print('重复爬取，跳过')
         return
     try:
         # 执行sql语句
