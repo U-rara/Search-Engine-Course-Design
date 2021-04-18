@@ -1,0 +1,9 @@
+lxml==4.6.3
+Scrapy==2.4.1
+requests==2.25.1
+nltk==3.6.1
+selenium==3.141.0
+pyhanlp==0.1.77
+scrapy_selenium
+itemadapter==0.2.0
+PyMySQL==1.0.2
