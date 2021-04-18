@@ -6,7 +6,7 @@ from selenium import webdriver
 from WebCrawler.items import WebcrawlerItem
 
 
-class News163ComSpider(CrawlSpider):
+class ChinaDailySpider(CrawlSpider):
     name = 'chinadaily_com_cn'
     base_url = 'http://global.chinadaily.com.cn/tech/'
 
