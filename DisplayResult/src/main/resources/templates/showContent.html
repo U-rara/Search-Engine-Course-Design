@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>newsList</title>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css"/>
+</head>
+<body class="container">
+<br/>
+<h1>News Content</h1>
+<br/><br/>
+<div class="with:85%">
+    <table class="table table-hover">
+        <tbody>
+        <tr>
+            <th>#</th>
+            <td th:text="${news.id}">id</td>
+        </tr>
+        <tr>
+            <th>Language</th>
+            <td th:text="${news.language}">language</td>
+        </tr>
+        <tr>
+            <th>URL</th>
+            <td th:text="${news.url}">url</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td th:text="${news.title}">title</td>
+        </tr>
+        <tr>
+            <th>Content</th>
+            <td th:text="${news.content}">url</td>
+        </tr>
+        <tr>
+            <th>Processed Content</th>
+            <td th:text="${news.getProcessed_content()}">url</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!--<div class="form-group">-->
+<!--    <div class="col-sm-2 control-label">-->
+<!--        <a href="/toAdd" th:href="@{/toAdd}" class="btn btn-info">add</a>-->
+<!--    </div>-->
+<!--</div>-->
+</body>
+</html>
