@@ -291,3 +291,5 @@ Thumbs.db
 
 
 /Spider/data
+*.xml
+*.iml
