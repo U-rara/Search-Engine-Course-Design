@@ -11,18 +11,7 @@ BOT_NAME = 'WebCrawler'
 
 SPIDER_MODULES = ['WebCrawler.spiders']
 NEWSPIDER_MODULE = 'WebCrawler.spiders'
-
-PROXY_LIST=[
-   "54.145.183.9:3128",
-   "24.193.59.8:8080",
-   "221.182.31.54:8080",
-   "165.225.77.46:443",
-   "143.198.222.22:8080",
-   "165.225.77.46:80",
-   "105.112.8.53:3128",
-]
-
-# CONCURRENT_REQUESTS = 100
+# CONCURRENT_REQUESTS = 10
 LOG_LEVEL = 'INFO'
 # DOWNLOAD_TIMEOUT = 10
 COOKIES_ENABLED = False
@@ -109,7 +98,6 @@ SPIDER_MIDDLEWARES = {
 DOWNLOADER_MIDDLEWARES = {
    'WebCrawler.middlewares.WebcrawlerDownloaderMiddleware': 543,
    'scrapy_selenium.SeleniumMiddleware': 800,
-   'scrapy.downloadermiddleware.useragent.UserAgentMiddleware': None,
    'WebCrawler.middlewares.MyUserAgentMiddleware': 400,
 }
 

@@ -1,9 +1,10 @@
+import random
 from time import sleep
 
 import scrapy
 from scrapy.spiders import CrawlSpider
 from selenium import webdriver
-from Spider.WebCrawler.items import WebcrawlerItem
+from WebCrawler.items import WebcrawlerItem
 from selenium.webdriver.chrome.options import Options
 
 class ChinaDailySpider(CrawlSpider):
@@ -12,20 +13,21 @@ class ChinaDailySpider(CrawlSpider):
 
     def __init__(self, *a, **kw):
         options = Options()
-        options.add_argument('--headless')
-        options.add_argument('--no-sandbox')
-        options.add_argument('--disable-dev-shm-usage')
+        # options.add_argument('--headless')
+        # options.add_argument('--no-sandbox')
+        # options.add_argument('--disable-dev-shm-usage')
         super().__init__(*a, **kw)
         self.model_urls = []  # 需要动态加载的url
         self.browser = webdriver.Chrome(
             executable_path='chromedriver.exe')
 
     def start_requests(self):
-        for i in range(2):
+        for i in range(500):
             target_url = self.base_url + 'page_' + str(i + 1) + '.html'
             yield scrapy.Request(url=target_url, callback=self.parse)
 
     def parse(self, response):
+        sleep(random.randrange(0,1))
         a_list = response.xpath('//div[@class="twBox_t1"]/a')
         for a in a_list:
             title = a.xpath('./text()').extract_first()
@@ -45,7 +47,7 @@ class ChinaDailySpider(CrawlSpider):
         content = ''.join(content).strip()
         item = response.meta['item']
         item['content'] = content
-        sleep(0.5)
+        sleep(1)
 
         yield item  # 将item对象提交给piplelines（管道文件），用于持久化存储
 
