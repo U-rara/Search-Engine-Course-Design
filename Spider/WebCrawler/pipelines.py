@@ -5,6 +5,7 @@
 
 
 # useful for handling different item types with a single interface
+import os
 from time import sleep
 
 import pymysql
@@ -126,6 +127,10 @@ def write_item(self, item):
     elif item['language'] == 'EN':
         origin_file_name = origin_file_name + '_E.txt'
         target_file_name = target_file_name + '_E.txt'
+
+    folder = os.path.exists('./data')
+    if not folder:
+        os.makedirs('./data')
 
     with open('./data/' + origin_file_name, 'w', encoding='utf-8') as file:
         file.write('标题:\n' + item['title'])

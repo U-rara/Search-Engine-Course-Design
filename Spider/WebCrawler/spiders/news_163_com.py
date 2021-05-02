@@ -4,7 +4,7 @@ import scrapy
 from lxml import etree
 from scrapy.spiders import CrawlSpider, Rule
 from selenium import webdriver
-from WebCrawler.items import WebcrawlerItem
+from Spider.WebCrawler.items import WebcrawlerItem
 
 
 class News163ComSpider(CrawlSpider):
