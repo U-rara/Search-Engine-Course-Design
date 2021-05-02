@@ -7,16 +7,12 @@ from time import sleep
 
 from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
 
-from proxy import get_proxy
-
 import requests
 from scrapy import signals
 
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
 from scrapy.http import HtmlResponse
-
-from WebCrawler import settings
 
 
 class WebcrawlerSpiderMiddleware:
