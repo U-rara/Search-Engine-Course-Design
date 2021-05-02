@@ -8,7 +8,7 @@ from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
 from selenium.webdriver.chrome.options import Options
 
-from WebCrawler.items import WebcrawlerItem
+from Spider.WebCrawler.items import WebcrawlerItem
 
 
 class kr36Spider(CrawlSpider):
@@ -19,6 +19,9 @@ class kr36Spider(CrawlSpider):
     def __init__(self, *a, **kw):
         super().__init__(*a, **kw)
         options = Options()
+        options.add_argument('--headless')
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
         # prefers = {"profile.managed_default_content_settings.images": 2, 'permissions.default.stylesheet': 2}
         # options.add_experimental_option("prefs", prefers)
         self.browser = webdriver.Chrome(
@@ -71,7 +74,7 @@ class kr36Spider(CrawlSpider):
 
         item = response.meta['item']
         item['content'] = content
-        sleep(1)
+        sleep(0.5)
         yield item  # 将item对象提交给piplelines（管道文件），用于持久化存储
 
     def closed(self, spider):
