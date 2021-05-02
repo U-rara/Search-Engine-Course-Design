@@ -8,7 +8,7 @@ from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
 from selenium.webdriver.chrome.options import Options
 
-from Spider.WebCrawler.items import WebcrawlerItem
+from WebCrawler.items import WebcrawlerItem
 
 
 class kr36Spider(CrawlSpider):
@@ -19,9 +19,9 @@ class kr36Spider(CrawlSpider):
     def __init__(self, *a, **kw):
         super().__init__(*a, **kw)
         options = Options()
-        options.add_argument('--headless')
-        options.add_argument('--no-sandbox')
-        options.add_argument('--disable-dev-shm-usage')
+        # options.add_argument('--headless')
+        # options.add_argument('--no-sandbox')
+        # options.add_argument('--disable-dev-shm-usage')
         # prefers = {"profile.managed_default_content_settings.images": 2, 'permissions.default.stylesheet': 2}
         # options.add_experimental_option("prefs", prefers)
         self.browser = webdriver.Chrome(
@@ -34,7 +34,7 @@ class kr36Spider(CrawlSpider):
 
     def parse(self, response):
         # 板块对应的新闻标题相关的内容都是动态加载
-        for j in range(2):
+        for j in range(30):
             for i in range(3):
                 self.browser.execute_script("window.scrollTo(0,document.body.scrollHeight);")  # 调用js动作，模拟下滑到底
             while True:
@@ -74,7 +74,7 @@ class kr36Spider(CrawlSpider):
 
         item = response.meta['item']
         item['content'] = content
-        sleep(0.5)
+        sleep(1)
         yield item  # 将item对象提交给piplelines（管道文件），用于持久化存储
 
     def closed(self, spider):

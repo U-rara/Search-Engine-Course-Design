@@ -35,7 +35,7 @@ class WebcrawlerPipeline:
              url text,
              content mediumtext,
              processed_content mediumtext
-             )
+             )  
             """
         )
         print('爬取开始...')
