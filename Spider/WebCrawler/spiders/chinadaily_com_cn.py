@@ -3,14 +3,18 @@ from time import sleep
 import scrapy
 from scrapy.spiders import CrawlSpider
 from selenium import webdriver
-from WebCrawler.items import WebcrawlerItem
-
+from Spider.WebCrawler.items import WebcrawlerItem
+from selenium.webdriver.chrome.options import Options
 
 class ChinaDailySpider(CrawlSpider):
     name = 'chinadaily_com_cn'
     base_url = 'http://global.chinadaily.com.cn/tech/'
 
     def __init__(self, *a, **kw):
+        options = Options()
+        options.add_argument('--headless')
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
         super().__init__(*a, **kw)
         self.model_urls = []  # 需要动态加载的url
         self.browser = webdriver.Chrome(
@@ -41,7 +45,7 @@ class ChinaDailySpider(CrawlSpider):
         content = ''.join(content).strip()
         item = response.meta['item']
         item['content'] = content
-        sleep(1)
+        sleep(0.5)
 
         yield item  # 将item对象提交给piplelines（管道文件），用于持久化存储
 
