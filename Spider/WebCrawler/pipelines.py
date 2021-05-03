@@ -96,6 +96,7 @@ def process_content(item):
 
         text = item['content']
         text = text.lower()
+        text = re.sub(r'"', '', text)
 
         # 选择语言
         stemmer = SnowballStemmer("english")
