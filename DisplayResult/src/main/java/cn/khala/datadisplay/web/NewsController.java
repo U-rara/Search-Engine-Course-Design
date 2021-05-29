@@ -4,6 +4,7 @@ import cn.khala.datadisplay.model.News;
 import cn.khala.datadisplay.service.NewsIndex;
 import cn.khala.datadisplay.service.NewsSearch;
 import cn.khala.datadisplay.service.NewsService;
+import cn.khala.datadisplay.service.NewsSimilarity;
 import javafx.util.Pair;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.stereotype.Controller;
@@ -91,8 +92,8 @@ public class NewsController {
     @RequestMapping("/search/{searchWord}")
     public String Search(Model model, @PathVariable String searchWord) {
 
-        Map<Integer,String> resNews = null;
-        List<Pair<News,String>> newsList =new ArrayList<>();
+        Map<Integer, String> resNews = null;
+        List<Pair<News, String>> newsList = new ArrayList<>();
 
         try {
             resNews = NewsSearch.searchContent(searchWord);
@@ -103,10 +104,22 @@ public class NewsController {
         assert resNews != null;
         for (Integer id : resNews.keySet()) {
             News news = newsService.findNewsById(id);
-            newsList.add(new Pair<>(news,resNews.get(id)));
+            newsList.add(new Pair<>(news, resNews.get(id)));
         }
         model.addAttribute("News", newsList);
         model.addAttribute("searchWord", searchWord);
         return "searchResultList";
+    }
+
+    @RequestMapping("/showSimilarity/{id1}&{id2}")
+    public String showSimilarity(Model model, @PathVariable int id1, @PathVariable int id2) {
+        News news1 = newsService.findNewsById(id1);
+        News news2 = newsService.findNewsById(id2);
+        double similarity = new NewsSimilarity(news1, news2).getCosineDistance();
+        similarity = (double) Math.round(similarity * 1000000) / 1000000;
+        model.addAttribute("news1", news1);
+        model.addAttribute("news2", news2);
+        model.addAttribute("similarity", similarity);
+        return "showSimilarity";
     }
 }
