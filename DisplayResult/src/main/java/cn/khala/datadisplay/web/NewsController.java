@@ -1,10 +1,8 @@
 package cn.khala.datadisplay.web;
 
 import cn.khala.datadisplay.model.News;
-import cn.khala.datadisplay.service.NewsIndex;
-import cn.khala.datadisplay.service.NewsSearch;
-import cn.khala.datadisplay.service.NewsService;
-import cn.khala.datadisplay.service.NewsSimilarity;
+import cn.khala.datadisplay.model.NewsInfo;
+import cn.khala.datadisplay.service.*;
 import javafx.util.Pair;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.stereotype.Controller;
@@ -26,6 +24,9 @@ public class NewsController {
 
     @Resource
     NewsService newsService;
+
+    @Resource
+    NewsInfoService newsInfoService;
 
     @RequestMapping("/")
     public String index() {
@@ -77,8 +78,8 @@ public class NewsController {
 
     @RequestMapping("/showResult")
     public String list(Model model) {
-        List<News> newsList = newsService.getNewsList();
-        model.addAttribute("News", newsList);
+        List<NewsInfo> newsInfoList = newsInfoService.getNewsInfoList();
+        model.addAttribute("News", newsInfoList);
         return "list";
     }
 
