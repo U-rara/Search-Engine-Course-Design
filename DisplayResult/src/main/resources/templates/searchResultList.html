@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>WebCrawl Result</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0-beta3/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <meta http-equiv="Refresh" content="15" />
+</head>
+<body class="container">
+<br/>
+<h1>Search Result of Word "<span th:text="${searchWord}"></span>"</h1>
+<br/>
+<a href="/showResult" class="btn btn-info">Back</a>
+<br/><br/>
+<div class="with:80%">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Related Content</th>
+            <th>Content</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="news : ${News}">
+            <th scope="row" th:text="${news.getKey().id}">id</th>
+            <td style="word-wrap:break-word;word-break:break-all" th:text="${news.getKey().title}">title</td>
+            <td th:utext="${news.getValue()}">Related Content</td>
+            <td><a th:href="@{/showContent(id=${news.getKey().id})}" class="btn btn-info">Display</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
