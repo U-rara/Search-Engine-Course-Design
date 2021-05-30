@@ -35,10 +35,13 @@ public class NewsController {
     public ApplicationRunner applicationRunner() {
         return applicationArguments -> {
             long startTime = System.currentTimeMillis();
-            System.out.println(Thread.currentThread().getName() + "：开始调用异步业务");
+            System.out.println(Thread.currentThread().getName() + "：开始计算中文IDF/英文IDF");
             newsService.getIDF();
             long endTime = System.currentTimeMillis();
-            System.out.println(Thread.currentThread().getName() + "：调用异步业务结束，耗时：" + (endTime - startTime));
+            System.out.println(Thread.currentThread().getName() + "：异步调用IDF计算成功，耗时：" + (endTime - startTime));
+
+            System.out.println(Thread.currentThread().getName() + "：开始构建索引");
+            new NewsIndex().indexAllNews(newsService.getNewsList());
         };
     }
 

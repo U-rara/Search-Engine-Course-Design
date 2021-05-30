@@ -16,6 +16,7 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+import org.springframework.scheduling.annotation.Async;
 
 public class NewsIndex{
     private volatile static NewsIndex instance;
@@ -30,6 +31,7 @@ public class NewsIndex{
         return SingletonHolder.instance;
     }
 
+    @Async
     public void indexAllNews(List<News> newsList) throws IOException {
 
         long startTime = System.currentTimeMillis();//记录索引开始时间
