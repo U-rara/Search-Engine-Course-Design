@@ -16,8 +16,8 @@ public class NewsSimilarity {
 
     private HashSet<String> wordSet;
 
-    private Vector<Integer> freqVec1;
-    private Vector<Integer> freqVec2;
+    private Vector<Double> freqVec1;
+    private Vector<Double> freqVec2;
 
     private void wordVecToMap(String[] wordVec,HashMap<String,Integer> wordMap){
         for(String word:wordVec){
@@ -29,7 +29,7 @@ public class NewsSimilarity {
         }
     }
 
-    public NewsSimilarity(News news1, News news2) {
+    public NewsSimilarity(News news1, News news2,HashMap<String,Double> idf) {
         this.wordVec1=news1.getProcessed_content().replace(" | ",",").split(",");
         this.wordVec2=news2.getProcessed_content().replace(" | ",",").split(",");
         wordMap1=new HashMap<>();
@@ -45,8 +45,8 @@ public class NewsSimilarity {
         wordSet.addAll(wordMap2.keySet());
 
         for(String word:wordSet){
-            freqVec1.add(wordMap1.get(word)==null?0:wordMap1.get(word));
-            freqVec2.add(wordMap2.get(word)==null?0:wordMap2.get(word));
+            freqVec1.add(wordMap1.get(word)==null?0:wordMap1.get(word)*idf.get(word));
+            freqVec2.add(wordMap2.get(word)==null?0:wordMap2.get(word)*idf.get(word));
         }
     }
 
@@ -58,21 +58,13 @@ public class NewsSimilarity {
         }
 
         double mod1=0.0,mod2=0.0;
-        for(int x:freqVec1){
+        for(double x:freqVec1){
             mod1+=x*x;
         }
-        for(int x:freqVec2){
+        for(double x:freqVec2){
             mod2+=x*x;
         }
         down=Math.sqrt(mod1)*Math.sqrt(mod2);
         return up/down;
-    }
-
-    public static void main(String[] args) {
-        News news1=new News();
-        news1.setProcessed_content("我 | 喜欢 | 看 | 电视 | 不 | 喜欢 | 看 | 电影");
-        News news2=new News();
-        news2.setProcessed_content("我 | 不 | 喜欢 | 看 | 电视 | 也 | 不 | 喜欢 | 看 | 电影");
-        System.out.println(new NewsSimilarity(news1,news2).getCosineDistance());
     }
 }
