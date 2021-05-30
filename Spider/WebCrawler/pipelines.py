@@ -6,8 +6,12 @@
 
 # useful for handling different item types with a single interface
 import os
-from time import sleep
+import string
 
+import jieba as jieba
+from zhon.hanzi import punctuation
+
+import nltk
 import pymysql
 import re
 from pyhanlp import HanLP
@@ -57,6 +61,8 @@ class WebcrawlerPipeline:
         print('网页{}处理完成,已保存文本并写入数据库\n\n'.format(self.index))
 
         self.index = self.index + 1
+        if self.index == 1001:
+            self.close_spider(self)
         return item
 
     def close_spider(self, spider):
@@ -70,15 +76,14 @@ def process_content(item):
     if item['language'] == 'ZH':
         content = item['content']
         # 预处理
-        content = ''.join(content).strip().replace(" ", "").split()[0]
+        content = re.sub("[{}]+".format(punctuation), "", content)
         # 去掉正文中引用的图片
         content = re.sub(r'(https|http)?:\/\/(\w|\.|\/|\?|\=|\&|\%)*\b', '', content, flags=re.MULTILINE)
         content = re.sub(r'编者按.*发布。|编者按：', '', content)
         content = re.sub(r'\W+', '', content).replace("_", '')
 
-        # 分词：基于随机条件场算法
-        crf_segment = HanLP.newSegment("crf")
-        text = crf_segment.segment(content)
+        # 分词
+        text = jieba.lcut(content)
 
         # 删除停用词
         stopwords = []
@@ -96,16 +101,18 @@ def process_content(item):
 
         text = item['content']
         text = text.lower()
-        text = re.sub(r'"', '', text)
+        remove = str.maketrans('', '', string.punctuation)
+        text = text.translate(remove)
+
+        words = nltk.word_tokenize(text)
 
         # 选择语言
         stemmer = SnowballStemmer("english")
         # 每个单词逐一提取
-        for word in re.findall(r"\w+(?:[-']\w+)*|'|[-.(]+|\S\w*", text):
+        for word in words:
             if word not in stopwords:
                 # 提取词根
                 item['processed_content'].append(stemmer.stem(word))
-        pass
 
 
 def check_item(item):
@@ -113,7 +120,7 @@ def check_item(item):
     url = item['url']
     content = item['content']
     print('文本长度:{}'.format(len(content)))
-    if title is None or url is None or content is None or len(content) < 100:
+    if title is None or url is None or content is None or len(content) < 400:
         return False
     else:
         return True

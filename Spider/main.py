@@ -9,7 +9,7 @@ from scrapy.crawler import CrawlerProcess
 if __name__ == '__main__':
     setting = get_project_settings()
     process = CrawlerProcess(setting)
-    for spider_name in ['36kr_com', 'chinadaily_com_cn']:
+    for spider_name in ['chinadaily_com_cn']:
         print("Running spider %s" % (spider_name))
         process.crawl(spider_name)
     process.start()
