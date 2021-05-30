@@ -34,7 +34,7 @@ class kr36Spider(CrawlSpider):
 
     def parse(self, response):
         # 板块对应的新闻标题相关的内容都是动态加载
-        for j in range(30):
+        for j in range(100):
             for i in range(3):
                 self.browser.execute_script("window.scrollTo(0,document.body.scrollHeight);")  # 调用js动作，模拟下滑到底
             while True:
