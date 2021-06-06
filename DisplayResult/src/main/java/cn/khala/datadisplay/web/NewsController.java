@@ -3,7 +3,6 @@ package cn.khala.datadisplay.web;
 import cn.khala.datadisplay.model.News;
 import cn.khala.datadisplay.model.NewsInfo;
 import cn.khala.datadisplay.service.*;
-import cn.khala.datadisplay.service.impl.NewsServiceImpl;
 import javafx.util.Pair;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.boot.ApplicationRunner;
