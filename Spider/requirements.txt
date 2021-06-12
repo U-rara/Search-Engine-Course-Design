@@ -7,3 +7,5 @@ pyhanlp==0.1.77
 scrapy_selenium
 itemadapter==0.2.0
 PyMySQL==1.0.2
+
+jieba~=0.42.1
