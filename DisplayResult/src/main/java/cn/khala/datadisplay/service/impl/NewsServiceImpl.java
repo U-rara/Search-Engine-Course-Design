@@ -33,6 +33,7 @@ public class NewsServiceImpl implements NewsService {
     @Override
     @Async
     public void getIDF() {
+        long startTime = System.currentTimeMillis();    //记录索引开始时间
         int newsNumZH = 0;
         int newsNumEN = 0;
         HashMap<String, Integer> wordMapEN = new HashMap<>();
@@ -93,6 +94,7 @@ public class NewsServiceImpl implements NewsService {
         }catch (IOException e){
             System.out.println("文件读写出错");
         }
-        System.out.println("IDF 计算完毕");
+
+        System.out.println("IDF 计算完毕,耗时："+(System.currentTimeMillis()-startTime)+"毫秒");
     }
 }

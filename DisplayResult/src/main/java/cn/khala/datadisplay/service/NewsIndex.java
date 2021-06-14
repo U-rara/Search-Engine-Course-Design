@@ -44,7 +44,6 @@ public class NewsIndex{
 
         for(News news: newsList){
             Document doc = new Document();
-            //添加字段
             doc.add(new IntField("id", (int) news.getId(),Field.Store.YES));
             doc.add(new TextField("title", news.getTitle(), Field.Store.YES));
             doc.add(new TextField("content", news.getContent(), Field.Store.YES));
