@@ -5,6 +5,7 @@ import cn.khala.datadisplay.model.NewsInfo;
 import cn.khala.datadisplay.service.*;
 import javafx.util.Pair;
 import org.apache.lucene.queryparser.classic.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -24,21 +25,18 @@ import java.util.Map;
 @Controller
 public class NewsController {
 
-    @Resource
+    @Autowired
     NewsService newsService;
 
-    @Resource
+    @Autowired
     NewsInfoService newsInfoService;
 
     @Bean
     public ApplicationRunner applicationRunner() {
         return applicationArguments -> {
-            long startTime = System.currentTimeMillis();
             System.out.println(Thread.currentThread().getName() + "：开始计算中文IDF/英文IDF");
             newsService.getIDF();
-            long endTime = System.currentTimeMillis();
-            System.out.println(Thread.currentThread().getName() + "：异步调用IDF计算成功，耗时：" + (endTime - startTime));
-
+            System.out.println(Thread.currentThread().getName() + "：异步调用IDF计算成功");
             System.out.println(Thread.currentThread().getName() + "：开始构建索引");
             new NewsIndex().indexAllNews(newsService.getNewsList());
         };
