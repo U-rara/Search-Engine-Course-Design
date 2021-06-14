@@ -24,24 +24,24 @@ public class NewsSearch {
     private final static String INDEX_DIR = "./data/LuceneIndex";
 
     public static Map<Integer, String> searchContent(String queryStr) throws IOException, ParseException {
-        Directory directory = FSDirectory.open(Paths.get(INDEX_DIR));
-        DirectoryReader reader = DirectoryReader.open(directory);
-        IndexSearcher searcher = new IndexSearcher(reader);
-        Analyzer analyzer = new SmartChineseAnalyzer();
+        Directory directory = FSDirectory.open(Paths.get(INDEX_DIR)); //实例化Directory
+        DirectoryReader reader = DirectoryReader.open(directory); //读取Directory
+        IndexSearcher searcher = new IndexSearcher(reader); //实例化IndexSearcher
+        Analyzer analyzer = new SmartChineseAnalyzer(); //中文搜索
         QueryParser parser = new QueryParser("content", analyzer);
-        Query query = parser.parse(queryStr);
+        Query query = parser.parse(queryStr);  //解析搜索内容
 
         long startTime = System.currentTimeMillis();
-        TopDocs docs = searcher.search(query, 10);
+        TopDocs docs = searcher.search(query, 10); //返回TopN结果
 
         System.out.println("查找" + queryStr + "所用时间：" + (System.currentTimeMillis() - startTime));
         System.out.println("查询到" + docs.totalHits + "条记录");
 
         SimpleHTMLFormatter simpleHTMLFormatter = new SimpleHTMLFormatter("<b><font color=red>", "</font></b>");
-        QueryScorer scorer = new QueryScorer(query);//计算查询结果最高的得分
-        Fragmenter fragmenter = new SimpleSpanFragmenter(scorer);//根据得分算出一个片段
+        QueryScorer scorer = new QueryScorer(query); //计算查询结果最高的得分
+        Fragmenter fragmenter = new SimpleSpanFragmenter(scorer); //根据得分算出一个片段
         Highlighter highlighter = new Highlighter(simpleHTMLFormatter, scorer);
-        highlighter.setTextFragmenter(fragmenter);//设置显示高亮的片段
+        highlighter.setTextFragmenter(fragmenter); //设置显示高亮的片段
 
         //遍历查询结果
         Map<Integer, String> resNews = new HashMap<>();
