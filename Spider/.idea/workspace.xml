@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8cde9baf-4e23-4016-aa70-5cea1e90088f" name="Default Changelist" comment="" />
+    <list default="true" id="8cde9baf-4e23-4016-aa70-5cea1e90088f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/data/LuceneIndex/_0.cfe" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/data/LuceneIndex/_0.cfe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/data/LuceneIndex/_0.cfs" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/data/LuceneIndex/_0.cfs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/data/LuceneIndex/_0.si" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/data/LuceneIndex/_0.si" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/data/LuceneIndex/_1.cfe" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/data/LuceneIndex/_1.cfe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/data/LuceneIndex/_1.cfs" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/data/LuceneIndex/_1.cfs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/data/LuceneIndex/_1.si" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/data/LuceneIndex/_1.si" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/data/LuceneIndex/_2.cfe" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/data/LuceneIndex/_2.cfe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/data/LuceneIndex/_2.cfs" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/data/LuceneIndex/_2.cfs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/data/LuceneIndex/_2.si" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/data/LuceneIndex/_2.si" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/data/LuceneIndex/segments_3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/data/idf_en.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/data/idf_en.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/data/idf_zh.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/data/idf_zh.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/src/main/java/cn/khala/datadisplay/repository/NewsInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/src/main/java/cn/khala/datadisplay/repository/NewsInfoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/src/main/java/cn/khala/datadisplay/service/NewsIndex.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/src/main/java/cn/khala/datadisplay/service/NewsIndex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/src/main/java/cn/khala/datadisplay/service/NewsSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/src/main/java/cn/khala/datadisplay/service/NewsSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/src/main/java/cn/khala/datadisplay/service/impl/NewsInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/src/main/java/cn/khala/datadisplay/service/impl/NewsInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/src/main/java/cn/khala/datadisplay/service/impl/NewsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/src/main/java/cn/khala/datadisplay/service/impl/NewsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/src/main/java/cn/khala/datadisplay/web/NewsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/src/main/java/cn/khala/datadisplay/web/NewsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/src/main/resources/templates/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/src/main/resources/templates/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DisplayResult/src/main/resources/templates/searchResultList.html" beforeDir="false" afterPath="$PROJECT_DIR$/../DisplayResult/src/main/resources/templates/searchResultList.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,6 +99,8 @@
       <workItem from="1619947553002" duration="2927000" />
       <workItem from="1622344040919" duration="15639000" />
       <workItem from="1623422894352" duration="390000" />
+      <workItem from="1623679992796" duration="5146000" />
+      <workItem from="1623692852791" duration="36000" />
     </task>
     <servers />
   </component>
@@ -85,6 +109,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Search_Engine_Course_Design$main.coverage" NAME="main Coverage Results" MODIFIED="1619025203254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Spider$main.coverage" NAME="main Coverage Results" MODIFIED="1622364942161" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Spider$main.coverage" NAME="main Coverage Results" MODIFIED="1623680479186" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

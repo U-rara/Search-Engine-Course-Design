@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class NewsInfoServiceImpl implements NewsInfoService {
     @Autowired
-    private NewsInfoRepository newsInfoRepository;
+    NewsInfoRepository newsInfoRepository;
 
     @Override
     public NewsInfo findById(int id){return newsInfoRepository.findById(id);}
