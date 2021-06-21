@@ -22,11 +22,11 @@ class WebcrawlerPipeline:
     def open_spider(self, spider):
         self.index = 1
         self.connection = pymysql.connect(
-            host='sh-cynosdbmysql-grp-fstsluyi.sql.tencentcdb.com',
-            port=28479,
-            user='root',
-            password='13211X@@',
-            db='search',
+            host='',
+            port=,
+            user='',
+            password='',
+            db='',
             charset='utf8'
         )
         self.cur = self.connection.cursor()
